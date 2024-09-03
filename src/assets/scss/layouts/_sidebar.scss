@@ -1,0 +1,219 @@
+.sidebarNav {
+  width: $sidenav-desktop;
+  flex-shrink: 0;
+  transition: swift-ease-out(width);
+  position: absolute;
+  overflow-x: hidden;
+}
+
+.branding {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  img{
+    max-width: 130px;
+  }
+}
+
+.activeMenu{
+//   background-color: var(--opaque-primary) !important;
+//   border: 1px solid #D7B1C7;
+  span,
+  i-tabler{
+    color: var(--white) !important;
+  }
+}
+
+a{
+  span,
+  i-tabler{
+    color: var(--dark-charcoal);
+  }
+}
+
+.nav-caption{
+  color: var(--dark-charcoal);
+  font-family: var(--inter-bold);
+}
+
+.sidebarNav-mini {
+  .sidebarNav {
+    width: $sidenav-mini;
+
+    .branding{
+      justify-content: flex-start !important;
+    }
+
+    .profile-bar {
+      display: none;
+    }
+    .sidebar-list {
+      .menu-list-item {
+        padding: 8px 17px;
+        .mdc-list-item__content {
+          display: none;
+        }
+        .mdc-list-item__start {
+          margin-left: 6px !important;
+          margin-right: 8px !important;
+        }
+      }
+    }
+    &:hover {
+      width: $sidenav-desktop;
+      .branding{
+        width: 100%;
+        justify-content: center !important;
+      }
+      .profile-bar {
+        display: block;
+      }
+      .sidebar-list {
+        .menu-list-item {
+          padding: 8px 10px;
+          .mdc-list-item__content {
+            display: inline;
+          }
+          .mdc-list-item__start {
+            margin-left: 0 !important;
+          }
+        }
+        &.mdc-list {
+          padding: 0 24px;
+
+          .mdc-list-group__subheader {
+            text-align: left;
+            display: flex !important;
+          }
+        }
+      }
+    }
+  }
+
+  .hideMenu {
+    overflow: hidden;
+    width: $sidenav-mini;
+  }
+
+  .branding {
+    width: $sidenav-mini - 19px;
+    overflow: hidden;
+  }
+
+  .sidebar-list {
+    &.mdc-list {
+      padding: 0 12px;
+
+      .mdc-list-group__subheader {
+        text-align: center;
+      }
+    }
+  }
+
+  .contentWrapper {
+    transition: swift-ease-out(width);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebarNav-mini {
+    .contentWrapper {
+      margin-left: $sidenav-mini !important;
+    }
+  }
+
+  .sidebarNav-mini {
+    .mdc-list-group__subheader{
+      display: none !important;
+    }
+  }
+}
+
+.customizerBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 9;
+}
+
+.sidebar-list {
+  &.mdc-list {
+    padding: 0 24px;
+
+    .mdc-list-group__subheader {
+      margin: 12px 0;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 24px;
+    }
+
+    .menu-list-item {
+      border-radius: 7px;
+      height: 45px;
+      padding: 8px 10px !important;
+      margin-bottom: 2px;
+      &.twoline {
+        height: 60px;
+        align-items: center;
+      }
+      &:before,
+      &:focus {
+        z-index: -1;
+      }
+      &.disabled {
+        opacity: 0.38;
+      }
+
+      .item-chip {
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+      &.activeMenu {
+        .mdc-list-item__primary-text {
+          color: $white !important;
+        }
+
+        .mat-mdc-list-item-icon {
+          color: $white !important;
+        }
+      }
+
+      .mdc-list-item__start {
+        margin-right: 14px;
+        margin-left: 0 !important;
+        width: 20px;
+        height: 20px;
+        fill: transparent !important;
+        color: $textPrimary;
+      }
+
+      .mdc-list-item__primary-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .arrow-icon {
+          display: flex;
+          .mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.flex-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

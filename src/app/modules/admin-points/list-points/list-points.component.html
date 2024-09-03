@@ -1,0 +1,23 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="d-flex align-items-center">
+            <div class="m-r-auto">
+                <button mat-flat-button color="primary" (click)="addLevel()">
+                    {{ txt.new_level }}
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<app-table
+    [columns]="columns"
+    [data]="datasource"
+    [isLoad]="isLoad"
+    [paginator]="paginator"
+    [enabledAction]="true"
+    (onSearch)="onSearch($event)"
+    (onChangePage)="onChangePage($event)"
+    (onPressRow)="openLevel($event)"
+    (onPressAction)="deleteLevel($event)"
+></app-table>

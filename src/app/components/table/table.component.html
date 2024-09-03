@@ -1,0 +1,90 @@
+<mat-card class="cardWithShadow">
+    <table-loader *ngIf="isLoad"></table-loader>
+    <mat-card-content class="p-24">
+        <div class="row justify-content-between m-b-8">
+            <div class="col-lg-5 col-sm-6 d-flex align-items-center">
+                <!-- <div>
+                    <mat-card-title>Data table with sorting, pagination, and filtering</mat-card-title>
+                    <mat-card-subtitle class="mat-body-1">all functionality is in one table</mat-card-subtitle>
+                </div> -->
+            </div>
+            <div class="col-lg-5 col-sm-6">
+                <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <mat-label>{{ txt.search_placeholder }}</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="table-responsive m-t-30">
+            <mat-table [dataSource]="dataSource" matSort>
+                <!-- ID Column -->
+                <ng-container *ngFor="let item of columns; trackBy: trackByFn" [matColumnDef]="item.label">
+                    <mat-header-cell
+                        mat-sort-header
+                        [disabled]="enabledSelection && item.label == 'selection' || !item.sort"
+                        *matHeaderCellDef
+                        class="f-semibold f-s-15"
+                        [ngClass]="'mw-'+item.maxWidth+ ' ' + item.align"
+                    >
+                        @if (item.label!='selection') {
+                            {{ _public.txt(item.label) }}
+                        }
+                        <div *ngIf="enabledSelection && item.label == 'selection'" >
+                            <mat-checkbox
+                            (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            color="primary"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()"
+                            >
+                            </mat-checkbox>
+                        </div>
+                    </mat-header-cell>
+
+                    <mat-cell (click)="onPress(element, item.label)" *matCellDef="let element" class="fs-14 p-4 white-space" [ngClass]="'mw-'+item.maxWidth+ ' ' + item.align">
+
+                        <div *ngIf="item.isImg">
+                            <img [src]="urlImg(element[item.label])" lazyLoadImg class="rounded-circle fit-img img-table" width="50" height="50"/>
+                        </div>
+
+                        <div *ngIf="item.isBadge">
+                          <span class="badge badge-pill px-3" [ngClass]="colorBadge(element[item.label])" >{{  (element[item.label] || 'no_data') | txt }}</span>
+                        </div>
+
+                        <div class="d-flex align-items-center" *ngIf=" !item.isBadge && !item.isImg && item.label != 'actions'">
+                            {{ element[item.label] | cutTxt | txt }} <span *ngIf="item.isColor" class="color-span" [ngStyle]="{'background-color': element[item.label]}"></span>
+                        </div>
+
+                        <div *ngIf="enabledAction && item.label == 'actions'">
+                            <button mat-icon-button [color]="item.colorAction || 'primary' " (click)="pressEdit(element)">
+                                <mat-icon>{{ item.iconAction || 'edit' }}</mat-icon>
+                            </button>
+                        </div>
+
+                        <div *ngIf="enabledSelection && item.label == 'selection'" >
+                          <mat-checkbox
+                            (click)="onClickCheckbox(element)"
+                            (change)="$event ? selection.toggle(element) : null"
+                            color="primary"
+                            [checked]="selection.isSelected(element)"
+                            [aria-label]="checkboxLabel(element)"
+                          >
+                          </mat-checkbox>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="txtColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: txtColumns"></mat-row>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" [attr.colspan]="columns.length">
+                        {{ txt.empty_data }}
+                    </td>
+                </tr>
+            </mat-table>
+            <mat-paginator *ngIf="data.length && paginator" [pageSizeOptions]="[5, 10, 25, 50, 70, 100]" [pageSize]="paginator.perPage"
+                [pageIndex]="paginator.currentPage - 1" [length]="paginator.total"
+                (page)="onChangePagePaginator($event)">
+            </mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,82 @@
+@use "sass:meta";
+
+@function get-contrast-color($color) {
+  $luminance: 0.2126 * red($color) + 0.7152 * green($color) + 0.0722 * blue($color);
+  @return if($luminance > 128, #333333, #ffffff);
+}
+
+
+@mixin badge($background-color, $padding: 0.25em 0.5em, $border-radius: 0.25em) {
+  background-color:  rgba($background-color, .18);
+  background:  rgba($background-color, .18);
+  color: $background-color;
+}
+
+
+@mixin syntax-colors($args...) {
+  @each $name, $color in meta.keywords($args) {
+    .bg-#{$name} {
+      background-color: $color !important;
+    }
+
+    .text-#{$name} {
+      color: $color !important;
+    }
+
+    .badge-#{$name} {
+      @include badge($color);
+    }
+
+  }
+}
+
+@include syntax-colors(
+  $primary: $primary,
+  $secondary: var(--secondary),
+  $accent: $accent,
+  $success: $success,
+  $warning: $warning,
+  $error: $error,
+  $white: $white,
+  $light: $light,
+  $gray-100: $gray-100,
+  $light-error: $light-error,
+  $light-accent: $light-accent,
+  $light-success: $light-success,
+  $light-warning: $light-warning,
+  $light-primary: $light-primary,
+  $opaque-primary: var(--opaque-primary),
+  $dark-charcoal: var(--dark-charcoal),
+);
+
+.fill-warning svg {
+  fill: $warning;
+  color: $warning;
+}
+
+.fill-light svg {
+  fill: $light;
+  color: $light;
+}
+
+.badge{
+  // background: #E1E1E1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  font-family: var(--inter-medium);
+}
+
+
+.badge-sending{
+  background: #48c9b021;
+  color: #48c9b0;
+  font-family: var(--inter-bold);
+  width: 100%;
+  padding: 8px 12px;
+}

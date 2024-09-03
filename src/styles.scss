@@ -1,0 +1,102 @@
+html,
+body {
+  height: 100%;
+  --mdc-dialog-container-elevation-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+body {
+  margin: 0;
+  font-family: "Inter";
+}
+
+app-customizer {
+  .mat-pseudo-checkbox {
+    display: none;
+  }
+}
+
+button.mat-primary {
+  height: 50px !important;
+}
+
+.txt-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+search-input {
+  width: 100%;
+  max-width: 300px;
+}
+
+
+
+.white-space{
+  white-space: normal !important;
+}
+
+
+.table-responsive{
+  mat-row:hover{
+    background-color: var(--primary-light);
+    mat-cell{
+      cursor: pointer;
+    }
+  }
+}
+
+.w-full{
+  width: 100%;
+}
+
+
+.relative{
+  position: relative;
+}
+
+.color-span{
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  margin: 6px;
+}
+
+
+.img-table{
+  object-fit: contain;
+}
+
+
+.breadcrumb-primary{
+  background-color: var(--opaque-primary);
+  border: 1px solid  var(--primary);
+  h4{
+    color: var(--primary);
+    font-family: var(--inter-semibold);
+    font-size: 24px;
+  }
+}
+
+
+
+mat-header-cell{
+  color: var(--granite-gray);
+  font-family: var(--inter-semibold);
+}

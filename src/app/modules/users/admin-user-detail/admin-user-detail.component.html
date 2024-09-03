@@ -1,0 +1,96 @@
+<div class="col-lg-12">
+    <mat-card class="cardWithShadow theme-card">
+        <mat-card-header>
+            <mat-card-title class="m-b-0">{{ txt.profile_user }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="b-t-1">
+            <form [formGroup]="formEdit" id="formEdit" (ngSubmit)="onValidate()">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-16 bg-light-primary rounded">
+                            <h5 class="mat-subtitle-2 text-primary d-flex align-items-center f-w-600">
+                                <i-tabler name="info-circle" class="icon-20 m-r-8 d-flex"></i-tabler>Información de administrador
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 no-gutters align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="John" formControlName="first_name" maxlength="100" />
+                                <mat-hint>
+                                    <msg-validation [formCtrl]="formEdit" formField="first_name" />
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Apellido</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="Deo"  formControlName="last_name" maxlength="100"/>
+                                <mat-hint>
+                                    <msg-validation [formCtrl]="formEdit" formField="last_name" />
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="p-16 bg-light-primary rounded">
+                            <h5 class="mat-subtitle-2 text-primary d-flex align-items-center f-w-600">
+                                <i-tabler name="info-circle" class="icon-20 m-r-8 d-flex"></i-tabler>Seguridad
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="john.deo@example.com" type="email" formControlName="email" maxlength="100"/>
+                                <mat-hint>
+                                    <msg-validation [formCtrl]="formEdit" formField="email" />
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Contraseña</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="********" maxlength="70" formControlName="password"  [type]="hide ? 'password' : 'text' " />
+                                <button matSuffix mat-icon-button (click)="hide = !hide" type="button" aria-label="Show password">
+                                    <mat-icon  class="text-dark-gray">
+                                      <i-tabler class="text-gray-100" [name]=" hide ? 'eye' : 'eye-off' " ></i-tabler>
+                                    </mat-icon>
+                                </button>
+
+                                <mat-hint>
+                                    <msg-validation [formCtrl]="formEdit" formField="password" />
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="b-t-1" align="end">
+            <button mat-flat-button  class="min-h-50" type="button" (click)="cancel()" >Cancelar</button>
+            <button mat-flat-button color="primary" class="m-l-8" type="submit" form="formEdit">Actualizar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

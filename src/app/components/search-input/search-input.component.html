@@ -1,0 +1,32 @@
+<mat-form-field role="search" appearance="outline" class="w-100 mw-300" subscriptSizing="dynamic" >
+
+  <input
+      #searchbox
+      id="searchbox"
+      matInput
+      maxlength="200"
+      autocomplete="off"
+      (click)="onPressInput()"
+      [value]="txtValue"
+      [placeholder]="placeholder"
+      (keyup)="search(getValue($event))"
+    />
+
+    <button
+      mat-icon-button
+      matSuffix
+      [matTooltip]="txt.clear_txt"
+      *ngIf="searchbox.value !== '' "
+      class="animated-show"
+      (click)="clear()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <mat-icon
+      class="animated-show"
+      matSuffix
+      *ngIf="searchbox.value == '' "
+    >search</mat-icon>
+
+</mat-form-field>

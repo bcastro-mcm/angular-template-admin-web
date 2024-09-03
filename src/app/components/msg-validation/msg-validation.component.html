@@ -1,0 +1,23 @@
+@if (formCtrl && _validator.validatorFormTxt( formField,  formCtrl) != '') {
+    <mat-hint
+        class="m-b-16 error-msg"
+    >
+        <div
+            class="text-error"
+        >
+            {{ _validator.validatorFormTxt( formField,  formCtrl) }}
+        </div>
+    </mat-hint>
+}
+
+@if ( !formCtrl ) {
+    <mat-hint
+        class="m-b-16 error-msg"
+    >
+        <div
+            class="text-error"
+        >
+            {{ message }}
+        </div>
+    </mat-hint>
+}

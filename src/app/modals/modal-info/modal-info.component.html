@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="txt-semibold">{{ data.title || txt.information }}</h1>
+<div mat-dialog-content class="content-message">{{ data.msg }}</div>
+<div mat-dialog-actions class="buttons" *ngIf="!data.actions">
+  <button mat-button mat-dialog-close>{{ txt.ok }}</button>
+</div>
+<div mat-dialog-actions class="buttons" *ngIf="data.actions">
+  <button mat-button *ngFor="let item of data.actions" (click)="item.action()">{{ item.text }}</button>
+</div>

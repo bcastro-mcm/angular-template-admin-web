@@ -1,0 +1,81 @@
+@mixin font-family( $type ){
+    font-family: $type !important;
+}
+
+$types: ("light": $inter-light , "medium": $inter-medium , "semibold": $inter-semibold , "bold": $inter-bold );
+
+@each $key, $value in $types {
+    .f-#{$key} {
+        @include font-family($value);
+    }
+}
+
+
+// Mixin for font-size
+@mixin font-size($size) {
+    font-size: $size !important;
+}
+
+// Generate font-size utility classes
+@for $i from 6 through 60 {
+    .fs-#{$i} {
+        @include font-size(#{$i}px);
+    }
+}
+
+
+// Mixin for width
+@mixin width($width) {
+    width: $width;
+}
+
+@mixin max-width($width) {
+    max-width: $width !important;
+}
+
+@mixin min-width($width) {
+    min-width: $width !important;
+}
+
+@mixin min-height($height) {
+    min-height: $height;
+}
+@mixin max-height($height) {
+    max-height: $height;
+}
+
+@mixin height($height) {
+    height: $height;
+}
+
+@mixin line-height($height) {
+    line-height: $height;
+}
+
+// Generate width utility classes
+@for $i from 1 through 1000 {
+    .w-#{$i} {
+        @include width(#{$i}px);
+    }
+
+    .mw-#{$i} {
+        @include max-width(#{$i}px);
+    }
+
+    .min-w-#{$i} {
+        @include min-width(#{$i}px);
+    }
+
+    .min-h-#{$i} {
+        @include min-height(#{$i}px);
+    }
+    .max-h-#{$i} {
+        @include max-height(#{$i}px);
+    }
+    .h-#{$i} {
+        @include height(#{$i}px);
+    }
+    .lh-#{$i} {
+        @include line-height(#{$i});
+    }
+}

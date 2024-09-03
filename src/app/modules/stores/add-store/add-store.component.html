@@ -1,0 +1,135 @@
+<form [formGroup]="formStore" (ngSubmit)="onValidate()"  *ngIf="!noExist">
+    <mat-card class="cardWithShadow theme-card">
+        <mat-card-content>
+            <div class="p-16 bg-light-primary rounded">
+                <h5 class="mat-subtitle-2 text-primary d-flex align-items-center f-w-600">
+                    <i-tabler name="info-circle" class="icon-20 m-r-8 d-flex"></i-tabler>Detalles de la tienda
+                </h5>
+            </div>
+
+            <div class="row m-t-20">
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"> Nombre de la tienda</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="company" placeholder="Seleccionar">
+                            <mat-option [value]="item.value" *ngFor="let item of business" >{{ item.label }}</mat-option>
+                        </mat-select>
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="company" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Provincia</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select placeholder="Seleccionar" formControlName="state" (selectionChange)="onSelectProvince($event)">
+                            <mat-option [value]="province.name" *ngFor="let province of _public.listStates" >{{ province.name }}</mat-option>
+                        </mat-select>
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="state" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Ciudad</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select placeholder="Seleccionar" formControlName="city" >
+                            <mat-option [value]="city.name" *ngFor="let city of cities" >{{ city.name }}</mat-option>
+                        </mat-select>
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="city" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-9">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Dirección</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="address" maxlength="300" placeholder="Ejm: Avenida las Américas" />
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="address" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-3">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Referencia</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" maxlength="100" formControlName="address_ref" placeholder="Ejm: Local 12" />
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="address_ref" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Horario</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" maxlength="200" formControlName="schedule" placeholder="Ejm: Lunes a Jueves: 10:00 a 20:30">
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="schedule" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <!-- <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Horario</mat-label>
+                     <div class="d-flex gap-6">
+                         <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput type="time" placeholder="Mínimo" />
+                            <span matSuffix class="f-w-600 m-r-8">AM</span>
+                         </mat-form-field>
+
+                         <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput type="time" placeholder="Máximo" />
+                            <span matSuffix class="f-w-600 m-r-8">AM</span>
+                         </mat-form-field>
+                     </div>
+                </div> -->
+
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Teléfonos</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" maxlength="26" formControlName="phones" placeholder="Ejm: (02) 2928230/ 2928240"/>
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="phones" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Email</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" maxlength="100"  formControlName="email"  placeholder="Ejm: local@lasfragancias.com"/>
+                        <mat-hint>
+                            <msg-validation [formCtrl]="formStore" formField="email" />
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-12">
+                    <div class="p-16 bg-light-primary rounded">
+                        <h5 class="mat-subtitle-2 text-primary d-flex align-items-center f-w-600">
+                            <i-tabler name="info-circle" class="icon-20 m-r-8 d-flex"></i-tabler>Ubicación de la tienda
+                        </h5>
+                    </div>
+                    <div id="map" class="map"></div>
+                    <article class="relative">
+                        <msg-validation [formCtrl]="formStore" formField="latitude" />
+                    </article>
+                </div>
+
+            </div>
+
+        </mat-card-content>
+
+        <mat-card-actions class="b-t-1" align="end">
+            <button mat-flat-button  class="min-h-50" type="button" (click)="cancel()" >Cancelar</button>
+            <button mat-flat-button color="primary" class="m-l-8"> {{ isEditMode ? 'Guardar' : 'Actualizar' }}</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+
+
+<app-error *ngIf="noExist" />

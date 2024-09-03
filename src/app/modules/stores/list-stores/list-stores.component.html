@@ -1,0 +1,28 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between flex-wrap ">
+            <div class="business">
+                <mat-button-toggle-group [disabled]="isLoad" [value]="business.FRAGANCIAS"  (change)="onChangeBusiness($event)">
+                    <mat-button-toggle [value]="business.FRAGANCIAS">{{ txt.las_fragancias }}</mat-button-toggle>
+                    <mat-button-toggle [value]="business.BURBUJAS">{{ txt.burbujas }}</mat-button-toggle>
+                    <mat-button-toggle [value]="business.SECRETOS">{{ txt.secretos_del_bano }}</mat-button-toggle>
+                  </mat-button-toggle-group>
+            </div>
+            <button mat-flat-button color="primary" (click)="addStore()">
+                {{ txt.new_store }}
+            </button>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<app-table
+    [columns]="columns"
+    [data]="datasource"
+    [isLoad]="isLoad"
+    [paginator]="paginator"
+    [enabledAction]="true"
+    (onSearch)="onSearch($event)"
+    (onChangePage)="onChangePage($event)"
+    (onPressRow)="openStore($event)"
+    (onPressAction)="deleteStore($event)"
+></app-table>

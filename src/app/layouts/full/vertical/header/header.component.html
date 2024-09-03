@@ -1,0 +1,114 @@
+<mat-toolbar class="topbar">
+  <!-- --------------------------------------------------------------- -->
+  <!-- Desktop Menu -->
+  <button
+    mat-icon-button
+    (click)="toggleCollapsed.emit()"
+    *ngIf="showToggle"
+    class="d-flex justify-content-center"
+  >
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+  <!-- Mobile Menu -->
+  <button
+    mat-icon-button
+    (click)="toggleMobileNav.emit()"
+    *ngIf="!showToggle"
+    class="d-flex justify-content-center"
+  >
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+
+  <span class="flex-1-auto"></span>
+
+  <!-- Mobile Menu -->
+  <button
+    mat-icon-button
+    (click)="toggleMobileNav.emit()"
+    class="d-flex d-lg-none justify-content-center"
+  >
+    <i-tabler name="grid-dots" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+
+  <!-- --------------------------------------------------------------- -->
+  <!-- profile Dropdown -->
+  <!-- --------------------------------------------------------------- -->
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profilemenu"
+    aria-label="Notifications"
+  >
+    <img
+      [src]="assets.profile"
+      class="rounded-circle object-cover"
+      width="35"
+    />
+  </button>
+  <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
+    <ng-scrollbar
+      class="position-relative"
+      style="height: 260px"
+    >
+      <div class="p-x-16 p-y-12">
+        <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1 ">{{ txt.profile_user }}</h6>
+
+        <div class="d-flex align-items-center p-b-18 b-b-1 m-t-12">
+          <img
+            [src]="assets.profile"
+            class="rounded-circle"
+            width="95"
+          />
+          <div class="m-l-14">
+            <h6 class="f-s-14 f-w-600 m-0">{{ user?.first_name }} {{ user?.last_name }}</h6>
+            <span class="f-s-14 d-block m-b-4">{{ txt.admin }}</span>
+            <span class="d-flex align-items-center txt-ellipsis mw-180" [matTooltip]="user?.email ?? ''">
+              <i-tabler name="mail" class="icon-15 m-r-4"></i-tabler>
+              <span class="ellipsis">
+                {{ user?.email }}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="p-x-32">
+        <a
+          class="p-y-12 text-decoration-none d-block text-hover-primary"
+          [routerLink]="[profile.link]"
+          *ngFor="let profile of optionsProfile"
+        >
+          <div class="d-flex align-items-center">
+            <button
+              mat-mini-fab
+              class="text-primary bg-light-primary shadow-none rounded"
+            >
+              <img [src]="profile.img" width="20" />
+            </button>
+
+            <div class="m-l-16">
+              <h5
+                class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text"
+              >
+                {{ profile.title }}
+              </h5>
+              <span class="mat-body-1">{{ profile.subtitle }}</span>
+            </div>
+          </div>
+        </a>
+      </div> -->
+
+      <div class="p-y-12 p-x-16">
+        <button
+          mat-stroked-button
+          (click)="logout()"
+          color="primary"
+          class="w-100"
+        >
+          {{ txt.logout }}
+        </button>
+      </div>
+    </ng-scrollbar>
+  </mat-menu>
+</mat-toolbar>

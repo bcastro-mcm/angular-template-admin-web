@@ -1,0 +1,77 @@
+<div class="blank-layout-container justify-content-center">
+  <div class="position-relative row w-100 h-100">
+    <div class="col-lg-7 col-xl-8 bg-gredient p-0 bg-mobile">
+      <div class="p-24 h-100">
+        <div
+          class="align-items-center justify-content-center img-height d-none d-lg-flex"
+        >
+          <img
+            [src]="assets.loginBg"
+            alt="login"
+            class="mw-500"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-xl-4 p-0 content-auth">
+      <div
+        class="p-32 d-flex align-items-start align-items-lg-center justify-content-center h-100"
+      >
+        <div class="row justify-content-center w-full">
+          <div class="col-lg-9 max-width-form d-flex flex-col align-items-center">
+            <img class="mw-170 m-b-16 w-full" [src]="options.theme === 'dark' ? assets.logoLight : assets.logoDark " alt="logo geoidentify">
+            <h4 class="f-semibold f-s-24 m-0">{{ txt.welcome_back }}</h4>
+            <span class="f-s-14 d-block mat-body-1 m-t-8">{{ txt.enter_credentials }}</span>
+
+            <form class="m-t-30 w-full" [formGroup]="form" (ngSubmit)="submit()">
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+                >{{ txt.email }}</mat-label
+              >
+              <mat-form-field
+                appearance="outline"
+                class="w-100"
+                color="primary"
+              >
+                <input matInput formControlName="email" maxlength="70" type="email" />
+                <mat-hint>
+                  <msg-validation [formCtrl]="form" formField="email"  />
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- password -->
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+                >{{ txt.password }}</mat-label
+              >
+              <mat-form-field
+                appearance="outline"
+                class="w-100"
+                color="primary"
+              >
+                <input matInput   maxlength="70"  [type]="hide ? 'password' : 'text' " formControlName="password" />
+                <button matSuffix mat-icon-button (click)="hide = !hide" type="button" aria-label="Show password">
+                  <mat-icon  class="text-dark-gray">
+                    <i-tabler class="text-gray-100" [name]=" hide ? 'eye' : 'eye-off' " ></i-tabler>
+                  </mat-icon>
+                </button>
+                <mat-hint>
+                  <msg-validation [formCtrl]="form" formField="password"  />
+                </mat-hint>
+              </mat-form-field>
+
+              <div class="d-flex align-items-center m-b-16 m-t-12 justify-content-end">
+                <a
+                  [routerLink]="['/'+routes.recovery_password]"
+                  class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14"
+                  >{{ txt.forgot_password }}</a
+                >
+              </div>
+              <button mat-flat-button color="primary" class="w-100" [disabled]="!form.valid">
+                {{ txt.login }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
