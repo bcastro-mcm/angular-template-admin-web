@@ -1,16 +1,6 @@
 # AdminGeoidentify
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7e4bcd3f-e1c5-49dd-b2c9-60d512748621/deploy-status)](https://app.netlify.com/sites/beauty-club-admin/deploys)
-
-
-### Accesos Cliente:
-CI: 0103466504
-
-### Accesos Administrador:
-email: admin@beautyclub.com
-contraseña: lasfragancias2024
-
-mcm_office_2
+Base admin template based in Angular 17 & Modernize template
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
 
@@ -37,5 +27,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-_.mcm2023._
